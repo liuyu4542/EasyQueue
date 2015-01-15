@@ -2,9 +2,11 @@ package com.liuyu.EasyDao.dao;
 
 import java.util.List;
 import java.util.Map;
+
 import com.liuyu.EasyDao.annotation.Conditions;
 import com.liuyu.EasyDao.annotation.EasyDao;
 import com.liuyu.EasyDao.annotation.Params;
+import com.liuyu.EasyDao.annotation.Statement;
 import com.liuyu.EasyDao.annotation.executeSql;
 @EasyDao
 public interface TestDao {
@@ -18,6 +20,9 @@ public interface TestDao {
 	public int updateUserInfo(String id,String username);
 	@executeSql("select * from user_info")
 	public List<Map<String,Object>> queryAll();
+	@Params("id")
+	@Statement("select2")
+	public List<Map<String,Object>> queryStatement(String id);
 	@Conditions({"id","username"})
 	@Params({"id","username"})
 	@executeSql("select * from user_info ")
