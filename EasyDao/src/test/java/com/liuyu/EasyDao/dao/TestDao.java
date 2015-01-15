@@ -14,7 +14,7 @@ public interface TestDao {
 	@executeSql("insert into user_info (id, username) values (:id, :username)")
 	public int insertUserInfo(String id,String username);
 	@Params({"id","username"})
-	@executeSql("update user_info set username= :username where id=:id")
+	@executeSql("update user_info set username=:username where id=:id")
 	public int updateUserInfo(String id,String username);
 	@executeSql("select * from user_info")
 	public List<Map<String,Object>> queryAll();
