@@ -21,7 +21,7 @@ public class DaoUtil {
 		return Modifier.isAbstract(mod);
 	}
 	/**返回首字母变为小写的字符串*/
-	public static String getFirstSmall(String name){
+	public static String toLower(String name){
 		name = name.trim();
 		if(name.length()>=2){
 			return name.substring(0, 1).toLowerCase()+name.substring(1);
