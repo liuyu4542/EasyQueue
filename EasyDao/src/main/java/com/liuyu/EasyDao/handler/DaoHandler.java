@@ -1,10 +1,8 @@
 package com.liuyu.EasyDao.handler;
 import java.lang.reflect.Method;
 import java.util.HashMap;
-import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
-import java.util.Set;
 
 import org.aopalliance.intercept.MethodInterceptor;
 import org.aopalliance.intercept.MethodInvocation;
@@ -14,6 +12,7 @@ import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 
 import com.liuyu.EasyDao.annotation.Conditions;
 import com.liuyu.EasyDao.annotation.Params;
+import com.liuyu.EasyDao.annotation.Statement;
 import com.liuyu.EasyDao.annotation.executeSql;
 import com.liuyu.EasyDao.exception.ParameterAnomalyException;
 import com.liuyu.EasyDao.util.DaoUtil;
@@ -84,6 +83,11 @@ public class DaoHandler implements MethodInterceptor {
 		if(method.isAnnotationPresent(Conditions.class)){
 			/**获取多条件执行语句*/
 			executeSql=DaoUtil.parseQueryCondition(executeSql, sqlParamsMap);
+		}
+		/**statement条件信息*/
+		if(method.isAnnotationPresent(Statement.class)){
+			Statement key = method.getAnnotation(Statement.class);
+			executeSql=DaoUtil.getSqlByProperties(key.value());
 		}
 		return executeSql;
 	}
