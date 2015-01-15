@@ -13,7 +13,7 @@
 	<aop:aspectj-autoproxy />
 	<context:component-scan base-package="com.liuyu.EasyDao.dao.*"/>
 	<!-- 引入属性文件 -->
-	<context:property-placeholder location="classpath*:dbconfig.properties" />
+	<context:property-placeholder location="classpath*:config.properties" />
 	<!-- 配置数据源 -->
 	<bean name="dataSource_ha" class="com.alibaba.druid.pool.DruidDataSource"
 		init-method="init" destroy-method="close">
@@ -93,7 +93,7 @@
 		<property name="namedParameterJdbcTemplate" ref="namedParameterJdbcTemplate"></property>
 	</bean>
 	<!-- 注册Dao接口 -->
-	<bean class="com.liuyu.EasyDao.automatic.DaoBeanFactory">
+	<bean class="com.liuyu.EasyDao.automatic.InterfaceBeanFactory">
 		<property name="packages">
 			<list>
 				<value>com.liuyu.EasyDao.dao.*</value>
