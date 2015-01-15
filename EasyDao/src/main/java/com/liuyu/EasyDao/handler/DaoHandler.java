@@ -15,6 +15,7 @@ import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import com.liuyu.EasyDao.annotation.Conditions;
 import com.liuyu.EasyDao.annotation.Params;
 import com.liuyu.EasyDao.annotation.executeSql;
+import com.liuyu.EasyDao.exception.ParameterAnomalyException;
 import com.liuyu.EasyDao.util.DaoUtil;
 //拦截处理
 public class DaoHandler implements MethodInterceptor {
@@ -56,7 +57,7 @@ public class DaoHandler implements MethodInterceptor {
     	if(flag){
     		Params arguments = method.getAnnotation(Params.class);
     			if(arguments.value().length > args.length){
-    				throw new Exception("实际参数个数与于定义参数个数不符");
+    				throw new ParameterAnomalyException("传值个数与预定义参数个数不符");
     			}
     			int args_num = 0;
     			for(String v:arguments.value()){
