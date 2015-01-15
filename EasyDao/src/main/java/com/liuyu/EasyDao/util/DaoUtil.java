@@ -1,11 +1,25 @@
 package com.liuyu.EasyDao.util;
+import java.io.IOException;
+import java.io.InputStream;
 import java.lang.reflect.Method;
 import java.lang.reflect.Modifier;
 import java.util.Iterator;
 import java.util.Map;
+import java.util.Properties;
 import java.util.Set;
 import com.liuyu.EasyDao.constant.FuncConst;
 public class DaoUtil {
+	private static Properties prop = new Properties();
+	/**静态初始化块 */
+	static {
+		InputStream in = Object.class.getResourceAsStream("/statements.properties");
+		try {
+			prop.load(in);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
+
 	/** 判断Class是否是基本包装类型 */
 	@SuppressWarnings("rawtypes")
 	public static boolean isWrapClass(Class clz) {
@@ -80,5 +94,11 @@ public class DaoUtil {
 			}
 		}
 		return executeSql;
+	}
+	/**根据标记获取sql*/
+	public static String getSqlByProperties(String name){
+		String sql=null;
+		sql = prop.getProperty(name).trim();    
+		return sql;
 	}
 }
