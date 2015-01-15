@@ -61,10 +61,22 @@ public class DaoUtil {
 	public static String parseQueryCondition(String executeSql,Map<String, Object> sqlParamsMap){
 		Set set=sqlParamsMap.entrySet();
 		Iterator  iterator=set.iterator();
+		int num=0;
+		if(set.size()>=2){
+			num=set.size()%2+1;
+		}
+		if(set.size()>0){
+			executeSql=executeSql+" where ";
+		}
 		while (iterator.hasNext()) { 
 			Map.Entry  mapentry = (Map.Entry) iterator.next();
 			if(!mapentry.getValue().equals("")){
 				executeSql=executeSql+mapentry.getKey().toString()+"=:"+mapentry.getKey().toString();
+			}
+			/**判断不为空条件个数*/
+			for(int i=0;i<num;i++){
+				executeSql=executeSql+" and ";
+				num=num-1;
 			}
 		}
 		return executeSql;
