@@ -2,6 +2,7 @@ package com.liuyu.EasyDao.demo;
 
 import java.util.List;
 import java.util.Map;
+
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,7 +11,9 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.transaction.TransactionConfiguration;
 import org.springframework.transaction.annotation.Transactional;
+
 import com.liuyu.EasyDao.dao.TestDao;
+import com.liuyu.EasyDao.util.DaoUtil;
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(locations = { "classpath*:applicationContext.xml" })
 @TransactionConfiguration(defaultRollback = false)
@@ -39,12 +42,24 @@ public class TestDemo {
 			System.out.println(m.get("username").toString());
 		}
 	}
-	@Test
+	//@Test
 	public void queryCondition(){
 		List<Map<String, Object>> mp=testdao.queryCondition("","");
 		for(Map<String, Object> m:mp){
 		System.out.println(m.get("id").toString());
 		System.out.println(m.get("username").toString());
+		}
+	}
+	//@Test
+	public void test(){
+		System.out.println(DaoUtil.getSqlByProperties("test"));
+	}
+	@Test
+	public void queryStatement(){
+		List<Map<String, Object>> mp=testdao.queryStatement("11");
+		for(Map<String, Object> m:mp){
+			System.out.println(m.get("id").toString());
+			System.out.println(m.get("username").toString());
 		}
 	}
 }
