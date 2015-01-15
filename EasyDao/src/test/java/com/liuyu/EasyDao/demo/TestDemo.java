@@ -25,7 +25,7 @@ public class TestDemo {
 	}
 	//@Test
 	public void insert(){
-		testdao.insertUserInfo("18", "otooo");
+		testdao.insertUserInfo("20", "wwww");
 	}
 	//@Test
 	public void update(){
@@ -41,10 +41,10 @@ public class TestDemo {
 	}
 	@Test
 	public void queryCondition(){
-		List<Map<String, Object>> mp=testdao.queryCondition("12","");
+		List<Map<String, Object>> mp=testdao.queryCondition("","");
 		for(Map<String, Object> m:mp){
-			System.out.println(m.get("id").toString());
-			System.out.println(m.get("username").toString());
+		System.out.println(m.get("id").toString());
+		System.out.println(m.get("username").toString());
 		}
 	}
 }
