@@ -81,12 +81,8 @@ public class DaoHandler implements MethodInterceptor {
 		}
 		/**sql条件信息*/
 		if(method.isAnnotationPresent(Conditions.class)){
-			if(sqlParamsMap!=null){
-				executeSql=executeSql+"where ";
-			}
 			/**获取多条件执行语句*/
 			executeSql=DaoUtil.parseQueryCondition(executeSql, sqlParamsMap);
-			
 		}
 		return executeSql;
 	}
