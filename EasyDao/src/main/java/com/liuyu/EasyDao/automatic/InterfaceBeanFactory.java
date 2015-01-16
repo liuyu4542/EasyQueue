@@ -7,7 +7,6 @@ import org.springframework.beans.BeansException;
 import org.springframework.beans.factory.config.BeanFactoryPostProcessor;
 import org.springframework.beans.factory.config.ConfigurableListableBeanFactory;
 import com.liuyu.EasyDao.annotation.EasyDao;
-import com.liuyu.EasyDao.util.DaoUtil;
 public class InterfaceBeanFactory implements BeanFactoryPostProcessor {
 	private static final Logger logger = Logger.getLogger(InterfaceBeanFactory.class);
 	/**Dao扫描路径*/
