@@ -25,7 +25,8 @@ public class InterfaceBeanFactory implements BeanFactoryPostProcessor {
 						   proxyFactoryBean.setBeanFactory(beanFactory);
 						   proxyFactoryBean.setInterfaces(new Class[]{easyDaoClass});
 						   proxyFactoryBean.setInterceptorNames(new String[]{"easyHandler"});
-						   String beanName = DaoUtil.toLower(easyDaoClass.getSimpleName());
+						   //String beanName = DaoUtil.toLower(easyDaoClass.getSimpleName());
+						   String beanName = easyDaoClass.getSimpleName();
 						   if(!beanFactory.containsBean(beanName)){
 							   logger.info("Dao Interface [/"+easyDaoClass.getName()+"/] register into Spring");
 							   beanFactory.registerSingleton(beanName,proxyFactoryBean.getObject());
