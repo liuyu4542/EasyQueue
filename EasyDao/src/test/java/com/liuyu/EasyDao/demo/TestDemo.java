@@ -13,7 +13,6 @@ import org.springframework.test.context.transaction.TransactionConfiguration;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.liuyu.EasyDao.dao.TestDao;
-import com.liuyu.EasyDao.util.DaoUtil;
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(locations = { "classpath*:applicationContext.xml" })
 @TransactionConfiguration(defaultRollback = false)
@@ -49,10 +48,6 @@ public class TestDemo {
 		System.out.println(m.get("id").toString());
 		System.out.println(m.get("username").toString());
 		}
-	}
-	//@Test
-	public void test(){
-		System.out.println(DaoUtil.getSqlByProperties("test"));
 	}
 	@Test
 	public void queryStatement(){
