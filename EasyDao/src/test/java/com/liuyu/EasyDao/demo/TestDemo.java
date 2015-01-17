@@ -12,6 +12,7 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.transaction.TransactionConfiguration;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.alibaba.fastjson.JSON;
 import com.liuyu.EasyDao.dao.TestDao;
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(locations = { "classpath*:applicationContext.xml" })
@@ -52,6 +53,8 @@ public class TestDemo {
 	@Test
 	public void queryStatement(){
 		List<Map<String, Object>> mp=testdao.queryStatement("11");
+		String jsonString = JSON.toJSONString(mp);  
+		System.out.println(jsonString);
 		for(Map<String, Object> m:mp){
 			System.out.println(m.get("id").toString());
 			System.out.println(m.get("username").toString());
