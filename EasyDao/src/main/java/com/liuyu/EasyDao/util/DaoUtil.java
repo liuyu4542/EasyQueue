@@ -10,16 +10,6 @@ import java.util.Set;
 import com.liuyu.EasyDao.constant.FuncConst;
 public class DaoUtil {
 	private static Properties prop = new Properties();
-	/**静态初始化块 */
-	static {
-		InputStream in = Object.class.getResourceAsStream("/statements.properties");
-		try {
-			prop.load(in);
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-	}
-
 	/** 判断Class是否是基本包装类型 */
 	@SuppressWarnings("rawtypes")
 	public static boolean isWrapClass(Class clz) {
@@ -98,7 +88,13 @@ public class DaoUtil {
 	/**根据标记获取sql*/
 	public static String getSqlByProperties(String name){
 		String sql=null;
-		sql = prop.getProperty(name).trim();    
+		InputStream in = Object.class.getResourceAsStream("/statements.properties");
+		try {
+			prop.load(in);
+			sql = prop.getProperty(name).trim(); 
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 		return sql;
 	}
 }
