@@ -1,4 +1,5 @@
 package com.liuyu.MQRpcDemo.Exception;
+/**消息服务器连接异常*/
 public class BrokerConnectFailedException extends Exception {
 	private static final long serialVersionUID = 5478226475434961522L;
 
