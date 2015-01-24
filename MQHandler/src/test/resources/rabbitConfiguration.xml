@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:rabbit="http://www.springframework.org/schema/rabbit"
+	xsi:schemaLocation="http://www.springframework.org/schema/rabbit http://www.springframework.org/schema/rabbit/spring-rabbit.xsd
+		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
+	<rabbit:connection-factory id="connectionFactory" />
+	<!-- 配置链接 -->
+	<bean id="connectionFactory"
+		class="org.springframework.amqp.rabbit.connection.CachingConnectionFactory">
+		<constructor-arg value="10.160.29.7" />
+		<constructor-arg value="5672" />
+		<property name="username" value="liuyu" />
+		<property name="password" value="33@6a+" />
+	</bean>
+	<rabbit:admin connection-factory="connectionFactory" />
+</beans>
