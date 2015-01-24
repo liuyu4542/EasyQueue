@@ -5,7 +5,6 @@ import org.springframework.context.annotation.AnnotationConfigApplicationContext
 import com.liuyu.MQRpcDemo.Factory.AMQPFactory;
 /**消息发送*/
 public class MessageProducer {
-	@SuppressWarnings("resource")
 	public void sendMessage(String message){
 		ApplicationContext context = new AnnotationConfigApplicationContext(AMQPFactory.class);
 		AmqpTemplate amqpTemplate = context.getBean(AmqpTemplate.class);
