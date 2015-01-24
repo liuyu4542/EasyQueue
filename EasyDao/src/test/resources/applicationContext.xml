@@ -15,15 +15,15 @@
 	<!-- 引入属性文件 -->
 	<context:property-placeholder location="classpath*:config.properties" />
 	<!-- 配置数据源 -->
-	<bean name="dataSource_ha" class="com.alibaba.druid.pool.DruidDataSource"
+	<bean name="dataSource_ha" class="com.alibaba.druid.pool.xa.DruidXADataSource"
 		init-method="init" destroy-method="close">
 		<property name="url" value="${jdbc.url}" />
 		<property name="username" value="${jdbc.username}" />
 		<property name="password" value="${jdbc.password}" />
 		<!-- 初始化连接大小 -->
-		<property name="initialSize" value="0" />
+		<property name="initialSize" value="10" />
 		<!-- 连接池最大使用连接数量 -->
-		<property name="maxActive" value="20" />
+		<property name="maxActive" value="100" />
 		<!-- 连接池最大空闲 -->
 		<property name="maxIdle" value="20" />
 		<!-- 连接池最小空闲 -->
@@ -88,7 +88,7 @@
 	 <aop:advisor advice-ref="txAdvice" pointcut="execution(* com.liuyu.EasyDao.dao..*.*(..))" />
 	</aop:config>
 	<!--动态代理类 -->
-	<bean id="easyHandler" class="com.liuyu.EasyDao.handler.DaoHandler">
+	<bean id="easyHandler" class="com.liuyu.EasyDao.template.DaoTemplate">
 		<property name="jdbcTemplate" ref="jdbcTemplate"></property>
 		<property name="namedParameterJdbcTemplate" ref="namedParameterJdbcTemplate"></property>
 	</bean>

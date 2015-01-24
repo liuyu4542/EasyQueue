@@ -28,7 +28,7 @@ public class TestDemo {
 	}
 	//@Test
 	public void insert(){
-		testdao.insertUserInfo("20", "wwww");
+		testdao.insertUserInfo("444", "pppp");
 	}
 	//@Test
 	public void update(){
@@ -52,12 +52,12 @@ public class TestDemo {
 	}
 	@Test
 	public void queryStatement(){
-		List<Map<String, Object>> mp=testdao.queryStatement("11");
+		List<Map<String, Object>> mp=testdao.queryStatement("1");
 		String jsonString = JSON.toJSONString(mp);  
 		System.out.println(jsonString);
 		for(Map<String, Object> m:mp){
 			System.out.println(m.get("id").toString());
-			System.out.println(m.get("username").toString());
+			System.out.println(m.get("name").toString());
 		}
 	}
 }

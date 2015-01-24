@@ -9,7 +9,7 @@ import com.liuyu.EasyDao.annotation.Statement;
 import com.liuyu.EasyDao.annotation.executeSql;
 @EasyDao
 public interface TestDao {
-	@executeSql("select count(*) from user_info")
+	@executeSql("select count(*) from demo")
 	Integer getCount();
 	@Params({"id","username"})
 	@executeSql("insert into user_info (id, username) values (:id, :username)")
@@ -17,13 +17,13 @@ public interface TestDao {
 	@Params({"id","username"})
 	@executeSql("update user_info set username=:username where id=:id")
 	public int updateUserInfo(String id,String username);
-	@executeSql("select * from user_info")
+	@executeSql("select * from demo")
 	public List<Map<String,Object>> queryAll();
 	@Params("id")
 	@Statement("select2")
 	public List<Map<String,Object>> queryStatement(String id);
-	@Conditions({"id","username"})
-	@Params({"id","username"})
-	@executeSql("select * from user_info ")
-	public List<Map<String,Object>> queryCondition(String id,String username);
+	@Conditions({"id","name"})
+	@Params({"id","name"})
+	@executeSql("select * from demo")
+	public List<Map<String,Object>> queryCondition(String id,String name);
 }
