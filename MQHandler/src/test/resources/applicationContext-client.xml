@@ -15,39 +15,4 @@ http://www.springframework.org/schema/rabbit/spring-rabbit-1.0.xsd">
 		address="http://10.160.29.6:8080/CXFDemo/Hello" />
 	<jaxws:client id="demoClient" serviceClass="com.liuyu.demo.service.DemoServiceI"
 		address="http://10.160.29.6:8081/CXFXADemo/demoService" />
-	<bean id="atomikosTransactionManager" class="com.atomikos.icatch.jta.UserTransactionManager"
-		init-method="init" destroy-method="close">
-		<property name="forceShutdown" value="true" />
-	</bean>
-	<bean id="atomikosUserTransaction" class="com.atomikos.icatch.jta.UserTransactionImp">
-		<property name="transactionTimeout" value="300" />
-	</bean>
-	<!-- JTA事务管理器 -->
-	<bean id="springTransactionManager"
-		class="org.springframework.transaction.jta.JtaTransactionManager">
-		<property name="transactionManager" ref="atomikosTransactionManager" />
-		<property name="userTransaction" ref="atomikosUserTransaction" />
-	</bean>
-	<!-- 事务管理 -->
-	<tx:advice id="txAdvice" transaction-manager="springTransactionManager"> 
-		<tx:attributes> 
-		<tx:method name="save*" propagation="REQUIRED"/> 
-		<tx:method name="add*" propagation="REQUIRED"/> 
-		<tx:method name="create*" propagation="REQUIRED"/> 
-		<tx:method name="insert*" propagation="REQUIRED"/> 
-		<tx:method name="update*" propagation="REQUIRED"/> 
-		<tx:method name="delete*" propagation="REQUIRED"/> 
-		<tx:method name="*" read-only="true" /> 
-		</tx:attributes> 
-	</tx:advice> 
-	<aop:config proxy-target-class="true">
-	 <aop:advisor advice-ref="txAdvice" pointcut="execution(* com.liuyu.MQRpcDemo.MessageRecv..*.*(..))" />
-	</aop:config>
-	<!-- 消息连接工厂配置 -->
-	<bean id="rabbitConnectionFactory" class="org.springframework.amqp.rabbit.connection.CachingConnectionFactory" p:username="liuyu" p:password="33@6a+" p:port="5672">
-		<constructor-arg value="10.160.29.7" /> 
-	</bean>
-	<!-- 发送消息模板 -->
-	<bean id="rabbitTemplate" class="org.springframework.amqp.rabbit.core.RabbitTemplate" p:connectionFactory-ref="rabbitConnectionFactory" />
-	
 </beans> 

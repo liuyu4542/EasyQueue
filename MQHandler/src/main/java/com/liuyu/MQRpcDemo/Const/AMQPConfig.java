@@ -2,7 +2,7 @@ package com.liuyu.MQRpcDemo.Const;
 //rabbitMq登陆配置
 public class AMQPConfig {
    //队列名称
-   public static final String QUEUE_NAME="hello.world.queue";
+   public static final String QUEUE_NAME="demo";
    public static final String EXCHANGE_NAME="hello.world.queue";
    public static final String HOST="10.160.29.7";
    public static final int PORT=5672;

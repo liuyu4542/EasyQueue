@@ -1,7 +1,6 @@
 package com.liuyu.MQRpcDemo.Factory;
 import org.springframework.amqp.core.AmqpAdmin;
 import org.springframework.amqp.core.Queue;
-import org.springframework.amqp.core.TopicExchange;
 import org.springframework.amqp.rabbit.connection.CachingConnectionFactory;
 import org.springframework.amqp.rabbit.connection.ConnectionFactory;
 import org.springframework.amqp.rabbit.core.RabbitAdmin;
@@ -37,9 +36,5 @@ public class AMQPFactory {
 	public Queue getQueue() {
 		return new Queue(AMQPConfig.QUEUE_NAME);
 	}
-	/**获取转发器*/
-	@Bean
-	public TopicExchange getTopicExchange() {
-		return new TopicExchange(AMQPConfig.EXCHANGE_NAME);
-	}
+	
 }
